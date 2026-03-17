@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mac UI Quiz</title>
+  <style>
+    body { font-family: Arial; max-width: 700px; margin: auto; padding: 20px; }
+    .question { margin-bottom: 20px; }
+    button { padding: 10px 15px; margin-top: 10px; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <h1>Mac User Interface Quiz</h1>
+  <div id="quiz"></div>
+  <button onclick="nextQuestion()">Next</button>
+  <h2 id="score" class="hidden"></h2>
+
+  <script>
+    const questions = [
+      {
+        q: "What is Finder used for?",
+        options: [
+          "Browsing and managing files",
+          "Editing videos",
+          "Monitoring system temperature",
+          "Running Windows apps"
+        ],
+        answer: 0
+      },
+      {
+        q: "What does Mission Control do?",
+        options: [
+          "Shows all open windows and desktops",
+          "Boosts CPU performance",
+          "Manages Wi-Fi connections",
+          "Updates macOS"
+        ],
+        answer: 0
+      },
+      {
+        q: "What is Spotlight used for?",
+        options: [
+          "Searching files and apps quickly",
+          "Controlling brightness",
+          "Recording audio",
+          "Managing passwords"
+        ],
+        answer: 0
+      },
+      {
+        q: "What does the Dock do?",
+        options: [
+          "Provides quick access to apps",
+          "Stores backups",
+          "Controls security settings",
+          "Handles printing"
+        ],
+        answer: 0
+      }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function loadQuestion() {
+      const quiz = document.getElementById('quiz');
+      quiz.innerHTML = '';
+
+      if (current >= questions.length) {
+        document.getElementById('score').classList.remove('hidden');
+        document.getElementById('score').innerText = `Final Score: ${score}/${questions.length}`;
+        return;
+      }
+
+      const q = questions[current];
+      const div = document.createElement('div');
+      div.className = 'question';
+
+      const title = document.createElement('h3');
+      title.innerText = q.q;
+      div.appendChild(title);
+
+      q.options.forEach((opt, index) => {
+        const btn = document.createElement('button');
+        btn.innerText = opt;
+        btn.onclick = () => {
+          if (index === q.answer) score++;
+          nextQuestion();
+        };
+        div.appendChild(btn);
+      });
+
+      quiz.appendChild(div);
+    }
+
+    function nextQuestion() {
+      current++;
+      loadQuestion();
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>
