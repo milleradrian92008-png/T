@@ -6,7 +6,7 @@
   <style>
     body { font-family: Arial; max-width: 700px; margin: auto; padding: 20px; }
     .question { margin-bottom: 20px; }
-    button { padding: 10px 15px; margin-top: 10px; }
+    button { padding: 10px 15px; margin: 5px 0; display:block; width:100%; }
     .hidden { display: none; }
   </style>
 </head>
@@ -18,46 +18,16 @@
 
   <script>
     const questions = [
-      {
-        q: "What is Finder used for?",
-        options: [
-          "Browsing and managing files",
-          "Editing videos",
-          "Monitoring system temperature",
-          "Running Windows apps"
-        ],
-        answer: 0
-      },
-      {
-        q: "What does Mission Control do?",
-        options: [
-          "Shows all open windows and desktops",
-          "Boosts CPU performance",
-          "Manages Wi-Fi connections",
-          "Updates macOS"
-        ],
-        answer: 0
-      },
-      {
-        q: "What is Spotlight used for?",
-        options: [
-          "Searching files and apps quickly",
-          "Controlling brightness",
-          "Recording audio",
-          "Managing passwords"
-        ],
-        answer: 0
-      },
-      {
-        q: "What does the Dock do?",
-        options: [
-          "Provides quick access to apps",
-          "Stores backups",
-          "Controls security settings",
-          "Handles printing"
-        ],
-        answer: 0
-      }
+      { q: "What is Finder used for?", options: ["Browsing and managing files","Editing videos","Monitoring system temperature","Running Windows apps"], answer: 0 },
+      { q: "What does Mission Control do?", options: ["Shows all open windows and desktops","Boosts CPU performance","Manages Wi-Fi connections","Updates macOS"], answer: 0 },
+      { q: "What is Spotlight used for?", options: ["Searching files and apps quickly","Controlling brightness","Recording audio","Managing passwords"], answer: 0 },
+      { q: "What does the Dock do?", options: ["Provides quick access to apps","Stores backups","Controls security settings","Handles printing"], answer: 0 },
+      { q: "What is Launchpad used for?", options: ["Viewing and opening apps in a grid","Managing files","Editing photos","Controlling volume"], answer: 0 },
+      { q: "What does System Settings allow you to do?", options: ["Change system preferences","Browse the web","Play games","Write documents"], answer: 0 },
+      { q: "What is Activity Monitor used for?", options: ["Viewing system performance and processes","Editing code","Managing emails","Streaming videos"], answer: 0 },
+      { q: "What does the Menu Bar display?", options: ["App menus and system status","Only time and date","Running apps list","Hidden files"], answer: 0 },
+      { q: "What is Time Machine used for?", options: ["Backing up your Mac","Speeding up apps","Installing updates","Cleaning storage"], answer: 0 },
+      { q: "What does AirDrop do?", options: ["Wirelessly share files between Apple devices","Boost internet speed","Scan for viruses","Manage passwords"], answer: 0 }
     ];
 
     let current = 0;
@@ -78,7 +48,7 @@
       div.className = 'question';
 
       const title = document.createElement('h3');
-      title.innerText = q.q;
+      title.innerText = `Question ${current + 1}: ${q.q}`;
       div.appendChild(title);
 
       q.options.forEach((opt, index) => {
